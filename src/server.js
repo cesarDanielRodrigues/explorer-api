@@ -1,5 +1,5 @@
 require("express-async-errors")
-const database = require("./database/sqlite")
+const migrationRun = require("./database/sqlite/migrations")
 
 const AppError = require("./utils/AppError")
 
@@ -13,7 +13,7 @@ app.use(express.json())
 
 app.use(routes)
 
-database()
+migrationRun()
 
 
 app.use((error, request, response, next) => {
