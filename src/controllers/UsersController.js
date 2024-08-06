@@ -9,7 +9,12 @@ class UserController{
         const database = await sqliteConnection()
         const checkUserExists = await database.get("SELECT * FROM users WHERE email = (?)", [email])
 
-        if
+        if(checkUserExists){
+            throw new AppError("Este e-mail já está em uso.")
+        }
+        return response.status(201).json()
+
+
         // if(!name){
         //     throw new AppError("O nome esta faltando")
         // }
